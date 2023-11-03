@@ -1,0 +1,18 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: https://discovery-server-smai.onrender.com/eureka
+  instance:
+    hostname: localhost
+    instance-id: ${spring.application.name}:${instanceId:${random.value}}
+spring:
+  application:
+    name: microservice1
+server:
+  port: 8081
+
+resilience4j.circuit breaker:
+  instances:
+    sentEmailCb: # nome_do_cb @CircuitBreaker
+      minimumNumberOfCalls: 4 # => número mínimo de chamadas
+      slidingWindowSize: 8 # => número máximo que ele memoriza
